@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- Bootstrap CSS محلي -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/DES.css">
+
+ 
+</head>
+<body>
+    <div>
+        <img src="logo.png" class="logo">
+    </div>
+
+<div class="first">
+     
+        <h2 class="text-center mb-4">Jewelry Price Prediction</h2>
+        <form id="predictionForm" action="/contact" method="post">
+            <div class="mb-3">
+                <label for="carat" class="form-label">Carat</label>
+                <input type="number" step="0.01" class="form-control" id="carat" placeholder="Enter carat value" required  name="first">
+            </div>
+            <div class="mb-3">
+                <label for="depth" class="form-label">Depth</label>
+                <input type="number" step="0.01" class="form-control" id="depth" placeholder="Enter depth value" required>
+            </div>
+            <button type="submit" class="btn">Predict Price</button>
+        </form>
+        <div id="result" class="alert alert-info mt-4 d-none"></div>
+    </div>
+</div>
+</body>
+</html>
+
+
+<!--
+       <form action="/contact" method="post">
+        <h1>Jewelry Price Prediction</h1>
+       
+    <input type="input" placeholder="enter your name" name="first">
+    <input type="submit" value="Send" >
+
+    </form>
+-->
