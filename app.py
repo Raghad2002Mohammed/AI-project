@@ -1,23 +1,31 @@
-from flask import Flask, render_template,request
-import joblib
+from flask import Flask, render_template, request, jsonify
+import pickle
+import numpy as np
 
-model = joblib.load("model.pkl")
+with open("M1","rb") as file:
+    load_model=pickle.load(file)
 
 app = Flask(__name__)
 
-app.config["DEBUG"] = True
 
 
 @app.route('/')
 def index():
     return render_template("index.html")
 
+@app.route('/predict', methods=['POST'])
+def predict():
+    try:
+        data = request.json  # استلام البيانات كـ JSON
+        carat = float(data['carat'])
+        depth = float(data['depth'])
+       
+        # تنفيذ التنبؤ
+        prediction = load_model.predict(np.array([[carat, depth]]))
 
+        return jsonify({'predict_price': prediction[0]})
+    except Exception as e:
+        return jsonify({'Error': str(e)}), 400  # إرجاع خطأ واضح
 
-
-@app.route('/contact',methods=["Post"])
-def contact():
-    first = request.form["first"]
-    return first    
-
-app.run()
+if __name__ == '__main__':
+    app.run(debug=True)
